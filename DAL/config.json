@@ -1,0 +1,10 @@
+﻿{
+  "Data": {
+    "DefaultConnection": {
+      "ConnectionString": "Data Source=KRIPTEKS-ПК\\SQLEXPRESS;Initial Catalog=Northiwnd;Integrated Security=True"
+    }
+  },
+  "EF": {
+    "NfDbContext":  "Data:DefaultConnection:ConnectionString"
+  }
+}
