@@ -9,26 +9,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var product_service_1 = require('./services/product.service');
-var AppComponent = (function () {
-    function AppComponent(_productService) {
+var ProductService = (function () {
+    function ProductService() {
     }
-    AppComponent.prototype.getProducts = function () {
-        this.
-        ;
+    ProductService.prototype.getProducts = function () {
     };
-    AppComponent.prototype.ngOnInit = function () {
-        this;
-    };
-    AppComponent = __decorate([
-        core_1.Component({
-            selector: 'service-app',
-            template: '<h1>Start page</h1>',
-            providers: [product_service_1.ProductService]
-        }), 
-        __metadata('design:paramtypes', [product_service_1.ProductService])
-    ], AppComponent);
-    return AppComponent;
+    ProductService = __decorate([
+        core_1.Injectable(), 
+        __metadata('design:paramtypes', [])
+    ], ProductService);
+    return ProductService;
 }());
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+exports.ProductService = ProductService;
+//# sourceMappingURL=product.service.js.map

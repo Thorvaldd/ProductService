@@ -15,9 +15,13 @@ namespace DAL
         {
             services.AddEntityFramework()
                 .AddSqlServer()
-                .AddDbContext<NorthwindContextBase>(opt=> {
-                    opt.UseSqlServer("Data Source=KRIPTEKS-ПК\\SQLEXPRESS;Initial Catalog=Northiwnd;Integrated Security=True");
+                .AddDbContext<NorthwindContextBase>(opt =>
+                {
+                    opt.UseSqlServer("Data Source=ALEKSEY-SIDOROV\\SQLEXPRESS;Initial Catalog=Northwind;Integrated Security=True");
                 });
+            //.AddDbContext<NorthwindContextBase>(opt=> {
+            //    opt.UseSqlServer("Data Source=KRIPTEKS-ПК\\SQLEXPRESS;Initial Catalog=Northiwnd;Integrated Security=True");
+            //});
         }
 
 
