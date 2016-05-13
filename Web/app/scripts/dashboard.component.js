@@ -10,18 +10,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var product_service_1 = require('./services/product.service');
-var AppComponent = (function () {
-    function AppComponent() {
+var DashboardComponent = (function () {
+    function DashboardComponent(_productService) {
+        this._productService = _productService;
+        this.products = [];
     }
-    AppComponent = __decorate([
+    DashboardComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this._productService.getProducts()
+            .subscribe(function (product) { return _this.products = product; }, function (err) { return _this.errorMessage = err; });
+    };
+    DashboardComponent = __decorate([
         core_1.Component({
-            selector: 'service-app',
-            template: '<h1>Start page</h1>',
-            providers: [product_service_1.ProductService]
+            selector: 'product-dashboard',
+            template: "<h3>dashboard</h3>"
         }), 
-        __metadata('design:paramtypes', [])
-    ], AppComponent);
-    return AppComponent;
+        __metadata('design:paramtypes', [product_service_1.ProductService])
+    ], DashboardComponent);
+    return DashboardComponent;
 }());
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+exports.DashboardComponent = DashboardComponent;
+//# sourceMappingURL=dashboard.component.js.map
