@@ -6,12 +6,9 @@ import 'rxjs/add/operator/map'
 import 'rxjs/add/operator/catch';
 
 @Injectable()
-export /**
- * ProductServic
- */
- class ProductService {
+export class ProductService {
      constructor(private _http: Http){}
-     private apiUrl = "/product/products"
+     private apiUrl = "products/all"
   
   getProducts (): Observable<IProduct[]>{
        var result = this._http.get(this.apiUrl).map((response: Response)=> <IProduct[]> response.json())
@@ -20,8 +17,7 @@ export /**
   }
   
   private handleError(error: Response) {
-      // add logging infrastructure
-      
+           
       console.error(error);
       return Observable.throw(error.json().error || 'Server error');
   }

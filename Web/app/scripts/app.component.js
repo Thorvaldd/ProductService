@@ -9,16 +9,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var router_1 = require('@angular/router');
+var http_1 = require('@angular/http');
 var product_service_1 = require('./services/product.service');
+var product_list_component_1 = require('../components/products/product-list.component');
+var dashboard_component_1 = require('../components/dashboard.component');
 var AppComponent = (function () {
     function AppComponent() {
     }
     AppComponent = __decorate([
         core_1.Component({
             selector: 'service-app',
-            template: '<h1>Start page</h1>',
-            providers: [product_service_1.ProductService]
-        }), 
+            templateUrl: 'app/views/app/app.component.html',
+            providers: [product_service_1.ProductService, router_1.ROUTER_PROVIDERS, http_1.HTTP_PROVIDERS],
+            directives: [router_1.ROUTER_DIRECTIVES]
+        }),
+        router_1.Routes([
+            { path: '/', component: dashboard_component_1.DashboardComponent },
+            { path: '/products', component: product_list_component_1.ProductListComponent }
+        ]), 
         __metadata('design:paramtypes', [])
     ], AppComponent);
     return AppComponent;

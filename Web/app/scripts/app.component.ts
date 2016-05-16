@@ -1,12 +1,21 @@
 ﻿import {Component} from '@angular/core';
-import {ProductService} from './services/product.service';
-import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from '@angular/router-deprecated';
+import {ROUTER_DIRECTIVES, Routes, ROUTER_PROVIDERS } from '@angular/router';
+import { HTTP_PROVIDERS } from '@angular/http';
 
+import {ProductService} from './services/product.service';
+import {ProductListComponent} from '../components/products/product-list.component';
+import { DashboardComponent } from '../components/dashboard.component';
+ 
 @Component({
     selector: 'service-app',
-    template: '<h1>Start page</h1>',
-    providers: [ProductService]
+    templateUrl: 'app/views/app/app.component.html' ,
+    providers: [ProductService, ROUTER_PROVIDERS, HTTP_PROVIDERS],
+    directives: [ROUTER_DIRECTIVES]
 })
+@Routes([
+    {path : '/', component: DashboardComponent},
+    {path: '/products', component: ProductListComponent}
+])
 
 
 export class AppComponent {

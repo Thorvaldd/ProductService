@@ -16,7 +16,7 @@ require('rxjs/add/operator/catch');
 var ProductService = (function () {
     function ProductService(_http) {
         this._http = _http;
-        this.apiUrl = "/product/products";
+        this.apiUrl = "products/all";
     }
     ProductService.prototype.getProducts = function () {
         var result = this._http.get(this.apiUrl).map(function (response) { return response.json(); })
@@ -24,7 +24,6 @@ var ProductService = (function () {
         return result;
     };
     ProductService.prototype.handleError = function (error) {
-        // add logging infrastructure
         console.error(error);
         return Observable_1.Observable.throw(error.json().error || 'Server error');
     };

@@ -20,6 +20,7 @@ namespace Web
             //application services
 
             services.AddTransient<IProductService, ProductService>();
+            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -28,6 +29,16 @@ namespace Web
             app.UseIISPlatformHandler();
 
             app.UseStaticFiles();
+
+            app.UseMvc(route =>
+            {
+                route.MapRoute(
+                    name: "getproductlist",
+                    template: "products/all",
+                    defaults: new {controller = "Product", action = "Products"}
+                    );
+            });
+
         }
 
         // Entry point for the application.

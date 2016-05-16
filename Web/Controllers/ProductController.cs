@@ -12,7 +12,8 @@ namespace Web.Controllers
         {
             _productService = productService;
         }
-
+        
+        [HttpGet]
         public JsonResult Products()
         {
             var products = _productService.GetAll();
