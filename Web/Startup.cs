@@ -2,10 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DAL.Models;
 using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;
 using Microsoft.AspNet.Http;
+using Microsoft.Data.Entity;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json.Serialization;
+using Repository.Interfaces;
 using Repository.Services;
 
 namespace Web
@@ -18,9 +22,27 @@ namespace Web
         {
 
             //application services
+            services.AddEntityFramework()
+             .AddSqlServer()
+             .AddDbContext<NorthwindContextBase>(opt =>
+             {
+                 opt.UseSqlServer("Data Source=ALEKSEY-SIDOROV\\SQLEXPRESS;Initial Catalog=Northwind;Integrated Security=True");
+             });
+            
+            services.AddMvcCore()
+                .AddJsonFormatters(a => a.ContractResolver = new CamelCasePropertyNamesContractResolver());
+            services.AddCors(opt =>
+            {
+                opt.AddPolicy("Sepcific",
+                    b=>b.AllowAnyHeader()
+                   .AllowAnyOrigin()
+                   .AllowAnyMethod()
+                    );
+            });
 
-            services.AddTransient<IProductService, ProductService>();
             services.AddMvc();
+            services.AddSingleton<IUnitOfWork, UnitOfWork>();
+            services.AddSingleton<IProductService, ProductService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -30,14 +52,14 @@ namespace Web
 
             app.UseStaticFiles();
 
-            app.UseMvc(route =>
+            app.UseMvc(r =>
             {
-                route.MapRoute(
-                    name: "getproductlist",
-                    template: "products/all",
-                    defaults: new {controller = "Product", action = "Products"}
-                    );
+                r.MapRoute(
+                    name: "default",
+                    template: "{controller=Product}/{action=Products}/{id?}");
             });
+            app.UseDeveloperExceptionPage();
+            app.UseCors("Sepcific");
 
         }
 

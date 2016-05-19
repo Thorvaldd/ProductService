@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using DAL.Models;
+using Microsoft.AspNet.Builder;
+using Microsoft.AspNet.Http;
 using Microsoft.Data.Entity;
 
 namespace DAL
@@ -13,12 +17,7 @@ namespace DAL
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddEntityFramework()
-                .AddSqlServer()
-                .AddDbContext<NorthwindContextBase>(opt =>
-                {
-                    opt.UseSqlServer("Data Source=ALEKSEY-SIDOROV\\SQLEXPRESS;Initial Catalog=Northwind;Integrated Security=True");
-                });
+          
             //.AddDbContext<NorthwindContextBase>(opt=> {
             //    opt.UseSqlServer("Data Source=KRIPTEKS-ПК\\SQLEXPRESS;Initial Catalog=Northiwnd;Integrated Security=True");
             //});

@@ -1,9 +1,9 @@
 export interface IProduct {
-    ProducID: number;
+    productID: number;
     CategoryID: number;
     Discounted: boolean;
-    ProductName: string;
-    QuantityPerUnit?: string;
+    productName: string;
+    quantityPerUnit?: string;
     ReorderLevel: number;
     SupplierID: number;
     UnitsInStock: number;

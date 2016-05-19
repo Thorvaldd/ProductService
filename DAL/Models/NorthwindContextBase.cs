@@ -27,5 +27,10 @@ namespace DAL.Models
             //md.Entity<EmployeeTerritories>().HasKey(x => new { x.EmployeeId, x.TerritoryId });
             md.Entity<OrderDetails>().HasKey(t => new { t.OrderID, t.ProductID });
         }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer("Data Source=ALEKSEY-SIDOROV\\SQLEXPRESS;Initial Catalog=Northwind;Integrated Security=True");
+        }
     }
 }

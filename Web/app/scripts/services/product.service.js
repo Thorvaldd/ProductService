@@ -13,10 +13,11 @@ var http_1 = require('@angular/http');
 var Observable_1 = require('rxjs/Observable');
 require('rxjs/add/operator/map');
 require('rxjs/add/operator/catch');
+require('rxjs/add/operator/do');
 var ProductService = (function () {
     function ProductService(_http) {
         this._http = _http;
-        this.apiUrl = "products/all";
+        this.apiUrl = "http://localhost:2114/api/product/all";
     }
     ProductService.prototype.getProducts = function () {
         var result = this._http.get(this.apiUrl).map(function (response) { return response.json(); })

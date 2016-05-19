@@ -2,6 +2,30 @@
     <div class="panel-heading">
         {{pageTitle}}
     </div>
-</div>
+    <div class="panel-body well well-sm">
+        <!--<router-outlet></router-outlet>-->
+        <ol class="breadcrumb">
+            <!--<li><a  [routerLink]="['/']">Dashboard</a></li>
+            <li class="active">Product list</li>-->
+        </ol>
+    </div>
+    <div class="has-error" *ngIf="err">{{err}}</div>
 
-<div class="has-error" *ngIf="err">{{err}}</div>
+<div class="table table-resposive table-hover table-bordered">
+    <div class="info">No products</div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Product name</th>
+                <th>Units in stock</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let product of products">
+                <td> {{product.productName}} </td>
+                <td> {{product.quantityPerUnit}} </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</div>
